@@ -3,8 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <script src="data.js"></script>
 </head>
 <body>
-
+<h1> Register</h1>
+<form>
+    <input type="text" placeholder="Name" id="name"><br>
+    <input type="text" placeholder="Phonenumber" id="number"><br>
+    <input type="email" placeholder="Email" id="email"><br>
+    <input type="password" placeholder='Password' id="pass"><br>
+    <input type="password" placeholder="Repassword" id="repassword"><br>
+    <input type="button" value='Register' onclick="Register()"> <br>
+</form>
+<script>
+    function Register() {
+        let name = document.getElementById('name').value
+        let phonenumber = document.getElementById('number').value
+        let email = document.getElementById('email').value
+        let password = document.getElementById('pass').value
+        let repassword = document.getElementById('repassword').value
+        if (name === "" ||phonenumber ==='' || email ==='' |password ==='' || repassword ==='') {
+            alert('Input it')
+        }else {
+            alert('Success')
+            let users = loadData()
+            let userObj = {
+                'name': name,
+                'phonenumber': phonenumber,
+                'email': phonenumber,
+                'password': phonenumber
+            }
+            users.push(userObj);
+            saveData(users)
+            window.location.href = "Sign in.html"
+        }
+            }
+</script>
 </body>
 </html>

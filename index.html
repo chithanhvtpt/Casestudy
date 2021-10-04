@@ -6,8 +6,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="productManage.js"></script>
     <script src="Product.js"></script>
+    <script src="data.js"></script>
 </head>
 <body>
+<div>
+    <h2 id="username"></h2>
+    <button type="button" onclick="logout()">log Out</button>
+</div>
 <button onclick="showForm('show')"> Add New Product</button>
 <form id="show" style="display : none">
     <fieldset>
@@ -80,6 +85,15 @@
         document.getElementById('image-update').value = productManage.products[index].image;
         document.getElementById('desc-update').value = productManage.products[index].description;
         document.getElementById('type-update').value = productManage.products[index].type;
+    }
+    let username = loadUserLogin();
+    if (username ==="") {
+        window.location.href = "Sign in.html"
+    }
+    document.getElementById("username").innerHTML = "Hello " + username
+    function logout() {
+        saveUserLogin("");
+        window.location.href = "Sign in.html"
     }
 
 

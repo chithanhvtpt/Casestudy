@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Sign in</title>
 </head>
 <body>
+<div>
+<form>
 <div>
     <h1> SIGN IN</h1>
     <div>
@@ -15,9 +17,29 @@
         <label>Password</label>
         <input type="password" placeholder="Password" id="Password-in">
     </div>
-    <button type="button" onclick="" >Sign in</button>
+    <button type="button" onclick="signIn()" >Sign in</button>
     <br>
-    <span>Don't you have account? Register <a href="Register.html">Here</a>  </span>
+    <span>Don't you have account? <a href="Register.html">Register</a></span>
+</div>
+</form>
+<script>
+    function signIn() {
+        let user = document.getElementById('User-in').value
+        let pass = document.getElementById('Password-in').value
+        let users = loadData();
+        let check = false;
+
+        for (let i = 0; i < users.length; i++) {
+            if (user === users[i].email && pass === users[i].password) {
+                check = true;
+                alert('Success');
+                saveUserLogin(users[i].name)
+                window.location.href = 'home.html';
+            }
+        }
+        if (!check) alert('Again')
+    }
+</script>
 </div>
 </body>
 </html>
