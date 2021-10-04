@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lí sản phẩm</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="productManage.js"></script>
+    <script src="Product.js"></script>
+</head>
+<body>
+<button onclick="showForm('show')"> Add New Product</button>
+<form id="show" style="display : none">
+    <fieldset>
+        <legend>Add New Product</legend>
+        <input type="text" id="name-product" placeholder="Input name product">
+        <input type="number" id="price-product" placeholder="Input price product">
+        <input type="text" id="image-product" placeholder="Input image product">
+        <input type="text" id="desc-product" placeholder="Input description product">
+        <input type="text" id="type-product" placeholder="Input type product">
+        <button type="button" onclick="addProduct()">Add</button>
+        <button type="button" onclick="hideForm('show')">Cancel</button>
+    </fieldset>
+</form>
+
+<form id="update" style="display : none">
+    <fieldset>
+        <legend>Update Product</legend>
+        <input type="text" id="name-update" placeholder="Input name product">
+        <input type="number" id="price-update" placeholder="Input price product">
+        <input type="text" id="image-update" placeholder="Input image product">
+        <input type="text" id="desc-update" placeholder="Input description product">
+        <input type="text" id="type-update" placeholder="Input type product">
+        <button type="button" onclick="updateProduct()">Update</button>
+        <button type="button" onclick="hideForm('update')">Cancel</button>
+    </fieldset>
+</form>
+
+<div id="add"></div>
+<script>
+    let productManage = new ProductManage()
+    let currentSelect = -1
+
+    function hideForm(id) {
+        document.getElementById(id).style.display = 'none'
+    }
+
+
+    function showForm(id) {
+        document.getElementById(id).style.display = 'block'
+    }
+    function addProduct() {
+        let name = document.getElementById('name-product').value
+        let price = document.getElementById('price-product').value
+        let image = document.getElementById('image-product').value
+        let description = document.getElementById('desc-product').value
+        let type = document.getElementById('type-product').value
+        let product = new Product(name, price, type, description, image)
+        productManage.addProduct(product);
+        productManage.display("add");
+    }
+    function deleteProduct(index) {
+        productManage.removeProduct(index);
+        productManage.display("add");
+    }
+    function updateProduct(){
+        let name = document.getElementById('name-update').value
+        let price = document.getElementById('price-update').value
+        let image = document.getElementById('image-update').value
+        let description = document.getElementById('desc-update').value
+        let type = document.getElementById('type-update').value
+        let product1 = new Product(name, price, type, description, image)
+        productManage.updateProduct(currentSelect,product1);
+        productManage.display("add");
+    }
+    function editProduct(index) {
+        currentSelect = index;
+        showForm('update');
+        document.getElementById('name-update').value = productManage.products[index].name;
+        document.getElementById('price-update').value = productManage.products[index].price;
+        document.getElementById('image-update').value = productManage.products[index].image;
+        document.getElementById('desc-update').value = productManage.products[index].description;
+        document.getElementById('type-update').value = productManage.products[index].type;
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>
