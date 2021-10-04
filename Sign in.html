@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign in</title>
+    <script src="data.js"></script>
 </head>
 <body>
 <div>
-<form>
-<div>
-    <h1> SIGN IN</h1>
-    <div>
-        <label>Username</label>
-        <input type="text" placeholder="Username" id="User-in">
-    </div>
-    <div>
-        <label>Password</label>
-        <input type="password" placeholder="Password" id="Password-in">
-    </div>
-    <button type="button" onclick="signIn()" >Sign in</button>
-    <br>
-    <span>Don't you have account? <a href="Register.html">Register</a></span>
-</div>
-</form>
-<script>
-    function signIn() {
-        let user = document.getElementById('User-in').value
-        let pass = document.getElementById('Password-in').value
-        let users = loadData();
-        let check = false;
+    <form>
+        <div>
+            <h1> SIGN IN</h1>
+            <div>
+                <label>Username</label>
+                <input type="text" placeholder="Username" id="name_in">
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" placeholder="Password" id="password_dn">
+            </div>
+            <button type="button" onclick="signIn()">Sign in</button>
+            <br>
+            <span>Don't you have account? <a href="Register.html">Register</a></span>
+        </div>
+    </form>
+    <script>
+        function signIn() {
+            let name = document.getElementById("name_in").value;
+            let pass = document.getElementById("password_dn").value;
+            let users = loadData();
+            let check = false;
 
-        for (let i = 0; i < users.length; i++) {
-            if (user === users[i].email && pass === users[i].password) {
-                check = true;
-                alert('Success');
-                saveUserLogin(users[i].name)
-                window.location.href = 'home.html';
+            for (let i = 0; i < users.length; i++) {
+                if (name === users[i].email && pass === users[i].password) {
+                    check = true;
+                    alert("success");
+                    saveUserLogin(users[i].name)
+                    window.location.href = "home.html";
+                }
             }
+
+            if (!check) alert("Again");
         }
-        if (!check) alert('Again')
-    }
-</script>
+    </script>
 </div>
 </body>
 </html>
